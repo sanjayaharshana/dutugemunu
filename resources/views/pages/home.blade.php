@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', config('association.name'))
-@section('meta_description', 'The official website of the Dutugemunu College Old Boys\' Association, Buttala. Reconnect with old friends, follow Association news and events, meet the committee and become a member.')
+@section('meta_description', 'The official website of the Dutugemunu College Old Students\' Association, Buttala. Reconnect with old friends, follow Association news and events, meet the committee and become a member.')
 
 @php($cfg = config('association'))
 
@@ -27,7 +27,11 @@
                 <h1>Once a son of Dutugemunu, always a son of Dutugemunu.</h1>
                 <p class="hero__motto">{{ $cfg['motto'] }} &nbsp;&mdash;&nbsp; <span lang="si">{{ $cfg['motto_si'] }}</span></p>
                 <div class="hero__actions">
-                    <a href="{{ route('committee') }}#membership" class="btn btn--light">Become a Member</a>
+                    @auth('member')
+                        <a href="{{ route('member.dashboard') }}" class="btn btn--light">Dashboard</a>
+                    @else
+                        <a href="{{ route('join') }}" class="btn btn--light">Become a Member</a>
+                    @endauth
                     <a href="{{ route('about') }}" class="btn btn--ondark">Our Story</a>
                 </div>
             </div>
@@ -69,7 +73,7 @@
             <div class="reveal">
                 <p class="eyebrow">Welcome</p>
                 <h2>The bond that outlasts the school bell</h2>
-                <p class="lead">The school in Buttala opened its doors in {{ $cfg['founded'] }}. The Old Boys' Association was formed in {{ $cfg['oba_founded'] }} to keep that fellowship alive and to stand behind the growing college.</p>
+                <p class="lead">The school in Buttala opened its doors in {{ $cfg['founded'] }}. The Old Students' Association was formed in {{ $cfg['oba_founded'] }} to keep that fellowship alive and to stand behind the growing college.</p>
                 <p>More than fifty years on, we are over {{ $cfg['stats'][2]['value'] }} members &mdash; farmers and physicians, teachers and public servants &mdash; with chapters in Colombo and overseas. What unites us is simple: a debt of gratitude to the school that made us, and a determination to pay it forward to the students who sit in our old classrooms today.</p>
                 <a href="{{ route('about') }}" class="textlink">Read our full story</a>
             </div>
@@ -111,9 +115,15 @@
                                 <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-9.3-8.5C1.2 8.8 2.6 5.5 6 5.5c2 0 3.2 1.1 4 2.3.8-1.2 2-2.3 4-2.3 3.4 0 4.8 3.3 3.3 6C19 15.6 12 20 12 20z"/></svg>
                         @endswitch
                     </div>
-                    <h3>{{ $qa['title'] }}</h3>
-                    <p>{{ $qa['text'] }}</p>
-                    <a href="{{ url($qa['url']) }}" class="textlink">{{ $qa['cta'] }}</a>
+                    @if ($qa['url'] === '/join' && auth('member')->check())
+                        <h3>Your Membership</h3>
+                        <p>You're a registered member. Visit your dashboard any time.</p>
+                        <a href="{{ route('member.dashboard') }}" class="textlink">Go to Dashboard</a>
+                    @else
+                        <h3>{{ $qa['title'] }}</h3>
+                        <p>{{ $qa['text'] }}</p>
+                        <a href="{{ url($qa['url']) }}" class="textlink">{{ $qa['cta'] }}</a>
+                    @endif
                 </div>
             @endforeach
         </div>
@@ -217,33 +227,12 @@
     </div>
 </section>
 
-{{-- ============================================================ Notable alumni --}}
-<section class="section section--sand">
-    <div class="wrap">
-        <div class="section-head center">
-            <p class="eyebrow">The Dutugemunu name</p>
-            <h2>Old boys who have carried it far</h2>
-        </div>
-        <div class="grid grid--3">
-            @foreach ($cfg['notable_alumni'] as $al)
-                @php($ini = \Illuminate\Support\Str::of($al['name'])->replaceMatches('/\b(Mr|Mrs|Ms|Dr|Prof|Justice)\.?\s*/i', '')->explode(' ')->filter()->map(fn ($w) => mb_substr($w, 0, 1))->implode(''))
-                <div class="value reveal">
-                    <span class="value__num" aria-hidden="true">{{ \Illuminate\Support\Str::upper($ini) }}</span>
-                    <h3 style="margin:.5rem 0 .2rem">{{ $al['name'] }}</h3>
-                    <p style="margin:0;color:var(--maroon);font-weight:600;font-size:.9rem;letter-spacing:.04em;text-transform:uppercase">{{ $al['field'] }}</p>
-                    <p style="margin:.5rem 0 0;color:var(--muted)">{{ $al['note'] }}</p>
-                </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-
 {{-- ============================================================ Gallery --}}
 <section class="section section--paper">
     <div class="wrap">
         <div class="section-head center">
             <p class="eyebrow">In pictures</p>
-            <h2>Moments from the Association year</h2>
+            <h2>Best moment of Dutugemunu</h2>
         </div>
         <div class="gallery">
             @foreach ($cfg['gallery'] ?? [] as $g)
@@ -258,13 +247,23 @@
 {{-- ============================================================ CTA --}}
 <section class="section cta-band">
     <div class="wrap">
-        <p class="eyebrow" style="color:var(--gold-soft)">Join us</p>
-        <h2>Your school gave you a start. Return the favour.</h2>
-        <p>Life membership connects you to old friends, the branch nearest you and every student your dues help along. It takes five minutes.</p>
-        <div class="hero__actions">
-            <a href="{{ route('committee') }}#membership" class="btn btn--light">Membership details</a>
-            <a href="{{ route('contact') }}" class="btn btn--ondark">Talk to the Secretary</a>
-        </div>
+        @auth('member')
+            <p class="eyebrow" style="color:var(--gold-soft)">Welcome back</p>
+            <h2>Good to see you, {{ explode(' ', auth('member')->user()->full_name)[0] }}.</h2>
+            <p>Your membership is active. Head to your dashboard to review your details or see what's coming up.</p>
+            <div class="hero__actions">
+                <a href="{{ route('member.dashboard') }}" class="btn btn--light">Go to My Dashboard</a>
+                <a href="{{ route('contact') }}" class="btn btn--ondark">Talk to the Secretary</a>
+            </div>
+        @else
+            <p class="eyebrow" style="color:var(--gold-soft)">Join us</p>
+            <h2>Your school gave you a start. Return the favour.</h2>
+            <p>Life membership connects you to old friends, the branch nearest you and every student your dues help along. It takes five minutes.</p>
+            <div class="hero__actions">
+                <a href="{{ route('join') }}" class="btn btn--light">Membership details</a>
+                <a href="{{ route('contact') }}" class="btn btn--ondark">Talk to the Secretary</a>
+            </div>
+        @endauth
     </div>
 </section>
 

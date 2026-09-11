@@ -14,11 +14,12 @@ class SettingsController extends Controller
     public function edit()
     {
         return view('admin.settings.edit', [
-            'general' => Setting::group('general'),
-            'contact' => Setting::group('contact'),
-            'social'  => Setting::group('social'),
-            'stats'   => array_pad(Setting::group('stats'), 4, ['value' => '', 'label' => '']),
-            'message' => Setting::group('president_message'),
+            'general'   => Setting::group('general'),
+            'contact'   => Setting::group('contact'),
+            'social'    => Setting::group('social'),
+            'stats'     => array_pad(Setting::group('stats'), 4, ['value' => '', 'label' => '']),
+            'message'   => Setting::group('president_message'),
+            'donations' => Setting::group('donations'),
         ]);
     }
 
@@ -53,6 +54,12 @@ class SettingsController extends Controller
             'message.batch'  => ['nullable', 'string', 'max:60'],
             'message.body'   => ['nullable', 'string'],
             'message.photo'  => ['nullable', 'image', 'max:6144'],
+
+            'donations.intro'          => ['nullable', 'string', 'max:800'],
+            'donations.bank_name'      => ['nullable', 'string', 'max:120'],
+            'donations.account_name'   => ['nullable', 'string', 'max:160'],
+            'donations.account_number' => ['nullable', 'string', 'max:60'],
+            'donations.branch'         => ['nullable', 'string', 'max:120'],
         ]);
 
         Setting::put('general', $data['general']);
@@ -78,6 +85,8 @@ class SettingsController extends Controller
         }
 
         Setting::put('president_message', $message);
+
+        Setting::put('donations', array_map(fn ($v) => $v ?? '', $data['donations'] ?? []));
 
         return back()->with('status', 'Settings saved.');
     }

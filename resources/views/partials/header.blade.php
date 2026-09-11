@@ -11,7 +11,7 @@
             <img src="{{ asset('images/logo-256.png') }}" alt="{{ config('association.name') }} crest" class="brand__crest">
             <span class="brand__text">
                 <span class="brand__name">Dutugemunu College</span>
-                <span class="brand__sub">Old Boys' Association &middot; Buttala</span>
+                <span class="brand__sub">Old Students' Association &middot; Buttala</span>
             </span>
         </a>
 
@@ -26,7 +26,11 @@
                     {{ $item['label'] }}
                 </a>
             @endforeach
-            <a href="{{ route('committee') }}#membership" class="btn btn--primary nav__cta">Become a Member</a>
+            @auth('member')
+                <a href="{{ route('member.dashboard') }}" class="btn btn--primary nav__cta">Dashboard</a>
+            @else
+                <a href="{{ route('join') }}" class="btn btn--primary nav__cta">Become a Member</a>
+            @endauth
         </nav>
     </div>
 </header>

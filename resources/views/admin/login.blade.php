@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow">
-    <title>Sign in · {{ config('association.short_name', 'DCOBA') }} Admin</title>
+    <title>Sign in · {{ config('association.short_name', 'DCOSA') }} Admin</title>
     <link rel="icon" href="{{ asset('images/favicon-96.png') }}" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,7 @@
         <div class="login-card__brand">
             <img src="{{ asset('images/logo-256.png') }}" alt="">
             <div>
-                <strong>Dutugemunu College<br>Old Boys' Association</strong>
+                <strong>Dutugemunu College<br>Old Students' Association</strong>
                 <span>Admin panel</span>
             </div>
         </div>

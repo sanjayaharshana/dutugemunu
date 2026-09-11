@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>@yield('title', config('association.name')) — {{ config('association.short_name') }}</title>
-    <meta name="description" content="@yield('meta_description', 'The official website of the Dutugemunu College Old Boys\' Association, Buttala — news, events, the committee and how to become a member.')">
+    <meta name="description" content="@yield('meta_description', 'The official website of the Dutugemunu College Old Students\' Association, Buttala — news, events, the committee and how to become a member.')">
 
     <link rel="icon" href="{{ asset('images/favicon-96.png') }}" type="image/png">
 

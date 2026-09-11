@@ -247,7 +247,7 @@ hr {
 .topbar a:hover { color: #fff; }
 .topbar__meta { display: flex; gap: 1.6rem; }
 .topbar__meta span { display: inline-flex; align-items: center; gap: 0.45rem; }
-.topbar__social { display: flex; gap: 0.4rem; }
+.topbar__social { display: flex; align-items: center; gap: 0.4rem; }
 .topbar__social a {
     width: 26px; height: 26px;
     display: grid; place-items: center;
@@ -255,6 +255,23 @@ hr {
 }
 .topbar__social a:hover { background: rgba(255, 255, 255, 0.12); }
 .topbar__social svg { width: 14px; height: 14px; fill: currentColor; }
+
+.topbar__member {
+    width: auto !important;
+    height: auto !important;
+    border-radius: 999px !important;
+    display: inline-flex !important;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.75rem;
+    margin-right: 0.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.topbar__member:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
+.topbar__member svg { width: 12px; height: 12px; fill: currentColor; }
 
 .site-header {
     position: sticky;
@@ -330,6 +347,9 @@ hr {
 .nav a[aria-current="page"] { color: var(--maroon); }
 
 .nav__cta { margin-left: 0.75rem; }
+/* .nav a's own color rule otherwise beats .btn--primary's white text (equal-ish specificity) */
+.nav__cta.btn--primary,
+.nav__cta.btn--primary:hover { color: #fff; }
 
 .nav-toggle {
     display: none;
@@ -1123,7 +1143,7 @@ body.nav-open .nav-toggle span::after  { transform: translateY(-6px) rotate(-45d
 .cta-band .hero__actions { justify-content: center; }
 
 /* --------------------------------------------------------------------------
-   15. Forms (contact — presentational only)
+   15. Forms
    -------------------------------------------------------------------------- */
 .form {
     background: var(--paper);
@@ -1167,6 +1187,200 @@ body.nav-open .nav-toggle span::after  { transform: translateY(-6px) rotate(-45d
     color: var(--muted);
     margin-top: 0.4rem;
 }
+
+/* Membership wizard --------------------------------------------------- */
+.wizard-form fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+.wizard-form legend {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--ink);
+    padding: 0;
+    margin-bottom: 1.2rem;
+    width: 100%;
+}
+
+.wizard-progress {
+    display: none;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+.is-wizard .wizard-progress { display: flex; }
+.wizard-progress__step {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    border-top: 3px solid var(--line);
+    padding-top: 0.8rem;
+}
+.wizard-progress__step em {
+    font-style: normal;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--line);
+    color: var(--ink);
+    font-size: 0.8rem;
+    flex: none;
+}
+.wizard-progress__step.is-active { color: var(--maroon); border-top-color: var(--maroon); }
+.wizard-progress__step.is-active em { background: var(--maroon); color: #fff; }
+.wizard-progress__step.is-done { color: var(--ink); border-top-color: var(--gold); }
+.wizard-progress__step.is-done em { background: var(--gold); color: #fff; }
+
+.is-wizard .wizard-step { display: none; }
+.is-wizard .wizard-step.is-current { display: block; animation: wizardIn 0.35s ease; }
+@keyframes wizardIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: none; }
+}
+
+.wizard-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.3rem;
+    border-top: 1px solid var(--line-soft);
+}
+
+.wizard-progress__step b { font-weight: 700; }
+
+@media (max-width: 560px) {
+    .wizard-progress__step b { display: none; }
+    .wizard-progress__step { justify-content: center; }
+}
+
+/* Tabs (member dashboard) --------------------------------------------- */
+.tab-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    border-bottom: 2px solid var(--line);
+    margin-bottom: 1.75rem;
+}
+.tab-nav__btn {
+    font: inherit;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.94rem;
+    color: var(--muted);
+    background: none;
+    border: 0;
+    cursor: pointer;
+    padding: 0.85rem 1rem;
+    margin-bottom: -2px;
+    border-bottom: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.tab-nav__btn svg { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 1.7; flex: none; }
+.tab-nav__btn:hover { color: var(--maroon); }
+.tab-nav__btn.is-active { color: var(--maroon); border-bottom-color: var(--maroon); }
+.is-tabs .tab-panel__heading { display: none; }
+.is-tabs .tab-panel { display: none; }
+.is-tabs .tab-panel.is-active { display: block; animation: wizardIn 0.3s ease; }
+.tab-panel + .tab-panel { margin-top: 2.5rem; }
+.tab-panel__heading {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--maroon);
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--line-soft);
+}
+
+@media (max-width: 640px) {
+    .tab-nav { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
+    .tab-nav__btn { white-space: nowrap; padding: 0.75rem 0.8rem; font-size: 0.88rem; }
+}
+
+/* Fund breakdown list */
+.fund-total {
+    background: var(--maroon-deep);
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 1.8rem 2rem;
+    margin-bottom: 1.75rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.fund-total strong { font-family: var(--font-display); font-size: 2.2rem; }
+.fund-total span { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-soft); }
+.fund-list { list-style: none; margin: 0; padding: 0; }
+.fund-list li {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--line-soft);
+}
+.fund-list li:last-child { border-bottom: 0; }
+.fund-list b { font-family: var(--font-display); color: var(--maroon); }
+
+/* Fund transaction history (member dashboard) */
+.fund-history__heading {
+    margin: 2rem 0 1rem;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    color: var(--maroon);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line-soft);
+}
+.fund-history { overflow-x: auto; border: 1px solid var(--line-soft); border-radius: var(--radius); }
+.fund-history__table { width: 100%; border-collapse: collapse; min-width: 480px; }
+.fund-history__table th,
+.fund-history__table td { text-align: left; padding: 0.7rem 1rem; border-bottom: 1px solid var(--line-soft); font-size: 0.92rem; }
+.fund-history__table th { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); background: var(--sand); }
+.fund-history__table tr:last-child td { border-bottom: 0; }
+.fund-history__table td.is-in { color: #2f7d4f; font-weight: 700; white-space: nowrap; }
+.fund-history__table td.is-out { color: #b3261e; font-weight: 700; white-space: nowrap; }
+
+/* Growth charts (Apache ECharts, side by side) */
+.growth-charts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+.growth-chart__title {
+    font-family: var(--font-display);
+    font-size: 0.98rem;
+    color: var(--maroon);
+    margin-bottom: 0.6rem;
+}
+.growth-chart__canvas { width: 100%; height: 260px; }
+@media (max-width: 720px) {
+    .growth-charts { grid-template-columns: 1fr; gap: 2.2rem; }
+}
+
+/* Bank details card */
+.bank-card {
+    background: var(--sand);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.7rem;
+    margin-top: 1.2rem;
+}
+.bank-card dl { display: grid; grid-template-columns: auto 1fr; gap: 0.5rem 1.2rem; margin: 0; }
+.bank-card dt { font-weight: 700; color: var(--ink); }
+.bank-card dd { margin: 0; color: var(--body); }
 
 .info-list { list-style: none; padding: 0; margin: 0; }
 .info-list li {

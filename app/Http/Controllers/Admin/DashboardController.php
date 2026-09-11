@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\CommitteeMember;
 use App\Models\Event;
+use App\Models\FundTransaction;
 use App\Models\MediaItem;
 use App\Models\NewsArticle;
+use App\Support\Money;
 
 class DashboardController extends Controller
 {
@@ -21,7 +23,8 @@ class DashboardController extends Controller
                 'gallery'        => MediaItem::where('collection', 'gallery')->count(),
                 'hero'           => MediaItem::where('collection', 'hero')->count(),
             ],
-            'recentNews' => NewsArticle::newest()->take(5)->get(),
+            'fundBalance' => Money::format(FundTransaction::totalBalance()),
+            'recentNews'  => NewsArticle::newest()->take(5)->get(),
         ]);
     }
 }

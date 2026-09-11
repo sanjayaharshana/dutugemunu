@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'News & Events')
-@section('meta_description', 'Announcements, project updates and the events calendar of the Dutugemunu College Old Boys\' Association, Buttala.')
+@section('meta_description', 'Announcements, project updates and the events calendar of the Dutugemunu College Old Students\' Association, Buttala.')
 
 @section('content')
 

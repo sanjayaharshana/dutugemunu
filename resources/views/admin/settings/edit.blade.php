@@ -7,6 +7,7 @@
 @php($c = fn ($k, $d = '') => old("contact.$k", data_get($contact, $k, $d)))
 @php($s = fn ($k, $d = '') => old("social.$k", data_get($social, $k, $d)))
 @php($m = fn ($k, $d = '') => old("message.$k", data_get($message, $k, $d)))
+@php($dn = fn ($k, $d = '') => old("donations.$k", data_get($donations, $k, $d)))
 
 @section('content')
     <form method="POST" action="{{ route('admin.settings.update') }}" enctype="multipart/form-data">
@@ -81,6 +82,30 @@
                     <label>Message <span class="hint">(separate paragraphs with a blank line)</span></label>
                     <textarea name="message[body]" style="min-height:180px">{{ old('message.body', is_array(data_get($message, 'body')) ? implode("\n\n", data_get($message, 'body')) : data_get($message, 'body')) }}</textarea>
                 </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h2>Current Funds <span class="hint muted">(shown on the member dashboard's "Current Funds" tab)</span></h2>
+            <p class="muted">
+                The total balance and fund breakdown are now calculated automatically from every addition and
+                deduction recorded at <a href="{{ route('admin.funds.index') }}">Funds</a> — there's nothing to
+                edit here any more.
+            </p>
+            <a href="{{ route('admin.funds.index') }}" class="btn btn--ghost btn--sm">Manage fund transactions →</a>
+        </div>
+
+        <div class="panel">
+            <h2>Donations <span class="hint muted">(shown on the member dashboard's "Donations" tab)</span></h2>
+            <div class="form-grid">
+                <div class="field field--full">
+                    <label>Introduction</label>
+                    <textarea name="donations[intro]" style="min-height:90px">{{ $dn('intro') }}</textarea>
+                </div>
+                <div class="field"><label>Bank name</label><input type="text" name="donations[bank_name]" value="{{ $dn('bank_name') }}"></div>
+                <div class="field"><label>Account name</label><input type="text" name="donations[account_name]" value="{{ $dn('account_name') }}"></div>
+                <div class="field"><label>Account number</label><input type="text" name="donations[account_number]" value="{{ $dn('account_number') }}"></div>
+                <div class="field"><label>Branch</label><input type="text" name="donations[branch]" value="{{ $dn('branch') }}"></div>
             </div>
         </div>
 

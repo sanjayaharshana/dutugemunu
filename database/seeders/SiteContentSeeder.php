@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\CommitteeMember;
 use App\Models\Event;
+use App\Models\FundTransaction;
 use App\Models\MediaItem;
 use App\Models\NewsArticle;
 use App\Models\Setting;
@@ -23,6 +24,7 @@ class SiteContentSeeder extends Seeder
         $this->seedNews($c);
         $this->seedEvents($c);
         $this->seedMedia();
+        $this->seedFundTransactions($c);
     }
 
     protected function seedSettings(array $c): void
@@ -42,6 +44,7 @@ class SiteContentSeeder extends Seeder
         Setting::put('social', $c['social']);
         Setting::put('stats', $c['stats']);
         Setting::put('president_message', $c['president_message']);
+        Setting::put('donations', $c['donations']);
     }
 
     protected function seedCommittee(array $c): void
@@ -150,6 +153,30 @@ class SiteContentSeeder extends Seeder
                 'collection' => 'hero',
                 'path'       => 'hero/' . $file,
                 'sort'       => $i,
+            ]);
+        }
+    }
+
+    /**
+     * Seeds one "Opening balance" addition per fund so a fresh install isn't empty.
+     * After this, funds are managed entirely at /admin/funds — this only ever runs once,
+     * on an empty `fund_transactions` table.
+     */
+    protected function seedFundTransactions(array $c): void
+    {
+        if (FundTransaction::query()->exists()) {
+            return;
+        }
+
+        $asOf = Carbon::parse($c['funds']['as_of'] ?? now()->toDateString());
+
+        foreach (array_values($c['funds']['breakdown'] ?? []) as $row) {
+            FundTransaction::create([
+                'type'     => 'addition',
+                'category' => $row['label'],
+                'title'    => 'Opening balance',
+                'amount'   => $row['value'],
+                'date'     => $asOf,
             ]);
         }
     }

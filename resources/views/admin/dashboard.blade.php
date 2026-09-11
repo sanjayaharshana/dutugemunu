@@ -11,6 +11,7 @@
         <a class="stat" href="{{ route('admin.events.index') }}"><b>{{ $counts['events'] }}</b><span>Events</span></a>
         <a class="stat" href="{{ route('admin.media.index') }}"><b>{{ $counts['gallery'] }}</b><span>Gallery images</span></a>
         <a class="stat" href="{{ route('admin.media.index') }}"><b>{{ $counts['hero'] }}</b><span>Hero images</span></a>
+        <a class="stat" href="{{ route('admin.funds.index') }}"><b>{{ $fundBalance }}</b><span>Fund balance</span></a>
     </div>
 
     <div class="panel">

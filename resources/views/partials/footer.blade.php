@@ -6,7 +6,7 @@
             <div>
                 <div class="footer-brand">
                     <img src="{{ asset('images/logo-256.png') }}" alt="">
-                    <strong>Dutugemunu College<br>Old Boys' Association</strong>
+                    <strong>Dutugemunu College<br>Old Students' Association</strong>
                 </div>
                 <p>Binding past pupils of Dutugemunu College, Buttala in fellowship and service to the school since {{ config('association.oba_founded') }}.</p>
                 <div class="footer-social">
@@ -31,7 +31,11 @@
             <div>
                 <h4>Get Involved</h4>
                 <ul>
-                    <li><a href="{{ route('committee') }}#membership">Become a Member</a></li>
+                    @auth('member')
+                        <li><a href="{{ route('member.dashboard') }}">My Dashboard</a></li>
+                    @else
+                        <li><a href="{{ route('join') }}">Become a Member</a></li>
+                    @endauth
                     <li><a href="{{ route('news') }}#events">Upcoming Events</a></li>
                     <li><a href="{{ route('committee') }}#sub-committees">Sub-Committees</a></li>
                     <li><a href="{{ route('contact') }}">Support a Project</a></li>
@@ -43,7 +47,7 @@
                 <h4>Association Office</h4>
                 <p>{{ $c['address'] }}</p>
                 <p>
-                    <a href="tel:{{ preg_replace('/\s+/', '', $c['phone']) }}">{{ $c['phone'] }}</a><br>
+                    {{-- Phone number hidden for now (ask before re-enabling) --}}
                     <a href="mailto:{{ $c['email'] }}">{{ $c['email'] }}</a>
                 </p>
                 <form class="footer-newsletter" data-demo data-email="{{ $c['email'] }}" aria-label="Newsletter sign-up">
@@ -56,7 +60,7 @@
 
         <div class="footer-note">
             <span>&copy; {{ config('association.oba_founded') }}&ndash;<span id="year">{{ date('Y') }}</span> {{ config('association.name') }}. All rights reserved.</span>
-            <span>Built with care by the old boys of Dutugemunu College, Buttala.</span>
+            <span>Built with care by the old students of Dutugemunu College, Buttala.</span>
         </div>
     </div>
 </footer>

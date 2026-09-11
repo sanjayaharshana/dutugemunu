@@ -3,16 +3,24 @@
 <div class="topbar">
     <div class="wrap">
         <div class="topbar__meta">
-            <span>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg>
-                <a href="tel:{{ preg_replace('/\s+/', '', $c['phone']) }}">{{ $c['phone'] }}</a>
-            </span>
+            {{-- Phone number hidden for now (ask before re-enabling) --}}
             <span>
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7L4 7v1l8 5 8-5V7l-8 5z"/></svg>
                 <a href="mailto:{{ $c['email'] }}">{{ $c['email'] }}</a>
             </span>
         </div>
         <div class="topbar__social">
+            @auth('member')
+                <a href="{{ route('member.dashboard') }}" class="topbar__member">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4.4 0-9 2.2-9 5v3h18v-3c0-2.8-4.6-5-9-5z"/></svg>
+                    My Account
+                </a>
+            @else
+                <a href="{{ route('member.login') }}" class="topbar__member">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4.4 0-9 2.2-9 5v3h18v-3c0-2.8-4.6-5-9-5z"/></svg>
+                    Member Login
+                </a>
+            @endauth
             <a href="{{ $s['facebook'] }}" target="_blank" rel="noopener" aria-label="Facebook">
                 <svg viewBox="0 0 24 24"><path d="M13 22v-9h3l.5-3.5H13V7.3c0-1 .3-1.8 1.8-1.8H17V2.3C16.6 2.2 15.4 2 14 2c-2.9 0-4.9 1.8-4.9 5v3.5H6V14h3.1v9H13z"/></svg>
             </a>

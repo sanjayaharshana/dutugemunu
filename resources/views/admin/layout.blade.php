@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow">
-    <title>@yield('title', 'Admin') · {{ config('association.short_name', 'DCOBA') }} Admin</title>
+    <title>@yield('title', 'Admin') · {{ config('association.short_name', 'DCOSA') }} Admin</title>
     <link rel="icon" href="{{ asset('images/favicon-96.png') }}" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,6 +15,8 @@
 @php($nav = [
     ['admin.dashboard', 'Dashboard', ['admin.dashboard']],
     ['admin.committee.index', 'Committee', ['admin.committee.*']],
+    ['admin.members.index', 'Members', ['admin.members.*']],
+    ['admin.funds.index', 'Funds', ['admin.funds.*']],
     ['admin.news.index', 'News', ['admin.news.*']],
     ['admin.events.index', 'Events', ['admin.events.*']],
     ['admin.media.index', 'Gallery & Hero', ['admin.media.*']],
@@ -24,7 +26,7 @@
     <aside class="sidebar">
         <a href="{{ route('admin.dashboard') }}" class="sidebar__brand">
             <img src="{{ asset('images/logo-256.png') }}" alt="">
-            <b>DCOBA<br>Admin</b>
+            <b>DCOSA<br>Admin</b>
         </a>
         @foreach ($nav as [$route, $label, $patterns])
             <a href="{{ route($route) }}" @class(['is-active' => request()->routeIs($patterns)])>{{ $label }}</a>

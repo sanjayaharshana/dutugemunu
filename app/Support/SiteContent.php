@@ -69,6 +69,11 @@ class SiteContent
         $data['social']            = array_merge($defaults['social'] ?? [], $social);
         $data['stats']             = ! empty($stats) ? array_values($stats) : ($defaults['stats'] ?? []);
         $data['president_message'] = array_merge($defaults['president_message'] ?? [], $message);
+        $data['donations']         = array_merge($defaults['donations'] ?? [], Setting::group('donations', $defaults['donations'] ?? []));
+
+        // Note: fund balances are NOT assembled here — they're computed on demand from the
+        // `fund_transactions` ledger (see App\Models\FundTransaction::totalBalance()/breakdownByCategory()),
+        // not stored as a config/settings value.
 
         $data['news'] = NewsArticle::query()->published()->newest()->get()
             ->map(fn (NewsArticle $a) => [

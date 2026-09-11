@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'The Committee')
-@section('meta_description', 'The elected office bearers and committee of the Dutugemunu College Old Boys\' Association for 2026/27, its sub-committees, and how to become a member.')
+@section('meta_description', 'The elected office bearers and committee of the Dutugemunu College Old Students\' Association for 2026/27, its sub-committees, and how to become a member.')
 
 @php($cfg = config('association'))
 @php($com = $cfg['committee'])
@@ -99,38 +99,17 @@
                     <li>Access to the career mentoring network</li>
                 </ul>
             </div>
-            <div class="form" style="color:var(--body)">
-                <h3 style="margin-bottom:.4rem">Request a membership pack</h3>
-                <p style="font-size:.95rem;color:var(--body)">Fill this in and the Secretary will send you the current rate and the application form.</p>
-                <form data-demo data-email="{{ $cfg['contact']['email'] }}">
-                    <div class="form__row">
-                        <div class="field">
-                            <label for="m-name">Full name</label>
-                            <input type="text" id="m-name" name="name" required>
-                        </div>
-                        <div class="field">
-                            <label for="m-year">Year you left</label>
-                            <input type="text" id="m-year" name="year" placeholder="e.g. 1998" required>
-                        </div>
-                    </div>
-                    <div class="form__row">
-                        <div class="field">
-                            <label for="m-email">Email</label>
-                            <input type="email" id="m-email" name="email" required>
-                        </div>
-                        <div class="field">
-                            <label for="m-phone">Phone</label>
-                            <input type="tel" id="m-phone" name="phone">
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label for="m-city">City / country you live in now</label>
-                        <input type="text" id="m-city" name="city">
-                    </div>
-                    <button type="submit" class="btn btn--primary" style="width:100%;justify-content:center">Send request</button>
-                    <p class="form__note">This form is a demonstration and does not yet submit. Please email
-                        <a href="mailto:{{ $cfg['contact']['email'] }}">{{ $cfg['contact']['email'] }}</a> in the meantime.</p>
-                </form>
+            <div class="form" style="color:var(--body);text-align:center">
+                @auth('member')
+                    <h3 style="margin-bottom:.4rem">You're already a member</h3>
+                    <p style="font-size:.95rem;color:var(--body)">Head to your dashboard to review your membership details or update your contact information.</p>
+                    <a href="{{ route('member.dashboard') }}" class="btn btn--primary" style="width:100%;justify-content:center;margin-top:.5rem">Go to My Dashboard</a>
+                @else
+                    <h3 style="margin-bottom:.4rem">Register in five minutes</h3>
+                    <p style="font-size:.95rem;color:var(--body)">Our online membership form walks you through your details step by step and ends with you setting up your own login — so you can come back any time and see your membership details.</p>
+                    <a href="{{ route('join') }}" class="btn btn--primary" style="width:100%;justify-content:center;margin-top:.5rem">Start the Membership Form</a>
+                    <p class="form__note" style="margin-top:1rem">Already registered? <a href="{{ route('member.login') }}">Log in to your member panel</a>.</p>
+                @endauth
             </div>
         </div>
     </div>

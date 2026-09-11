@@ -6,7 +6,7 @@
 @section('content')
     @foreach ([
         ['hero', 'Homepage hero', 'These crossfade behind the headline. 3–5 wide photos work best.', false],
-        ['gallery', 'Homepage gallery', 'Shown in the “Moments from the Association year” grid.', true],
+        ['gallery', 'Homepage gallery', 'Shown in the “Best moment of Dutugemunu” grid.', true],
     ] as [$collection, $label, $hint, $withCaption])
         <div class="panel">
             <div class="panel__head">
