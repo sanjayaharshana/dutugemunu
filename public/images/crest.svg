@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 230" role="img" aria-label="Dutugemunu College crest">
+  <defs>
+    <linearGradient id="shield" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8b2233"/>
+      <stop offset="1" stop-color="#47101c"/>
+    </linearGradient>
+  </defs>
+  <path d="M100 6 L186 32 V116 C186 168 148 202 100 224 C52 202 14 168 14 116 V32 Z"
+        fill="url(#shield)" stroke="#c19a4b" stroke-width="5"/>
+  <path d="M100 20 L172 42 V115 C172 158 140 188 100 208 C60 188 28 158 28 115 V42 Z"
+        fill="none" stroke="#e7d4a8" stroke-width="1.5" opacity="0.6"/>
+  <!-- lamp of learning -->
+  <g fill="#e7d4a8">
+    <ellipse cx="100" cy="112" rx="30" ry="12"/>
+    <path d="M100 60 C104 74 118 80 118 96 C118 108 110 112 100 112 C90 112 82 108 82 96 C82 80 96 74 100 60 Z"/>
+    <path d="M100 46 c3 8 3 12 0 18 c-3 -6 -3 -10 0 -18 Z"/>
+  </g>
+  <path d="M70 124 h60 v6 h-60 Z" fill="#c19a4b"/>
+  <text x="100" y="160" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif"
+        font-size="34" font-weight="700" fill="#fff" letter-spacing="2">DC</text>
+  <text x="100" y="182" text-anchor="middle" font-family="Georgia, serif"
+        font-size="9" fill="#e7d4a8" letter-spacing="3">1955</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Library Project">
+  <defs>
+    <linearGradient id="t107" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#47101c"/><stop offset="1" stop-color="#6a1b2a"/>
+    </linearGradient>
+  </defs>
+  <rect width="700" height="700" fill="url(#t107)"/>
+  <circle cx='299' cy='624' r='279' fill='#fff' opacity='0.10'/>
+  <circle cx='12' cy='111' r='289' fill='#e7d4a8' opacity='0.10'/>
+  <circle cx='591' cy='312' r='184' fill='#fff' opacity='0.10'/>
+  <circle cx='682' cy='547' r='382' fill='#fff' opacity='0.10'/>
+  <path d='M155 0 L337 0 L190 700 L8 700 Z' fill='#fff' opacity='0.12'/>
+  <rect x="18" y="18" width="664" height="664" fill="none" stroke="#e7d4a8" stroke-width="1.5" opacity="0.55"/>
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central"
+        font-family="Georgia,'Times New Roman',serif" font-size="26" fill="rgba(255,255,255,0.85)" letter-spacing="1">Library Project</text>
+</svg>

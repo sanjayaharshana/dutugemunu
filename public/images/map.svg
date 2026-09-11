@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Map to Dutugemunu College">
+  <rect width="800" height="500" fill="#eee6da"/>
+  <g stroke="#d8cab2" stroke-width="10" fill="none">
+    <path d="M-20 120 H820 M-20 340 H820 M160 -20 V520 M520 -20 V520"/>
+  </g>
+  <g stroke="#c9b48f" stroke-width="24" fill="none" opacity="0.7">
+    <path d="M-20 230 H820"/>
+  </g>
+  <rect x="200" y="150" width="230" height="150" fill="#e7d4a8" opacity="0.7" stroke="#c19a4b"/>
+  <text x="315" y="230" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#6a1b2a">College Grounds</text>
+  <g transform="translate(430 300)">
+    <path d="M0 0 C-26 -34 -40 -50 -40 -74 A40 40 0 1 1 40 -74 C40 -50 26 -34 0 0 Z" fill="#6a1b2a"/>
+    <circle cx="0" cy="-74" r="15" fill="#fff"/>
+  </g>
+  <text x="400" y="470" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#8a7c63">Buttala, Monaragala District</text>
+</svg>

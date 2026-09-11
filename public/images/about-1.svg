@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 840" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Dutugemunu College · Buttala">
+  <defs>
+    <linearGradient id="t55" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#47101c"/><stop offset="1" stop-color="#6a1b2a"/>
+    </linearGradient>
+  </defs>
+  <rect width="700" height="840" fill="url(#t55)"/>
+  <circle cx='371' cy='411' r='270' fill='#fff' opacity='0.10'/>
+  <circle cx='677' cy='512' r='308' fill='#e7d4a8' opacity='0.10'/>
+  <circle cx='654' cy='405' r='334' fill='#fff' opacity='0.10'/>
+  <circle cx='640' cy='616' r='312' fill='#fff' opacity='0.10'/>
+  <path d='M275 0 L457 0 L310 840 L128 840 Z' fill='#fff' opacity='0.12'/>
+  <rect x="18" y="18" width="664" height="804" fill="none" stroke="#e7d4a8" stroke-width="1.5" opacity="0.55"/>
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central"
+        font-family="Georgia,'Times New Roman',serif" font-size="26" fill="rgba(255,255,255,0.85)" letter-spacing="1">Dutugemunu College · Buttala</text>
+</svg>

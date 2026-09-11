@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 640" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Founders of the Association">
+  <defs>
+    <linearGradient id="t66" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#faf6f0"/><stop offset="1" stop-color="#f0e4d6"/>
+    </linearGradient>
+  </defs>
+  <rect width="560" height="640" fill="url(#t66)"/>
+  <circle cx='184' cy='95' r='156' fill='#6a1b2a' opacity='0.08'/>
+  <circle cx='145' cy='571' r='202' fill='#c19a4b' opacity='0.08'/>
+  <circle cx='337' cy='381' r='226' fill='#6a1b2a' opacity='0.08'/>
+  <circle cx='337' cy='188' r='286' fill='#6a1b2a' opacity='0.08'/>
+  <path d='M141 0 L286 0 L169 640 L24 640 Z' fill='#6a1b2a' opacity='0.07'/>
+  <rect x="18" y="18" width="524" height="604" fill="none" stroke="#c19a4b" stroke-width="1.5" opacity="0.55"/>
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central"
+        font-family="Georgia,'Times New Roman',serif" font-size="26" fill="rgba(106,27,42,0.8)" letter-spacing="1">Founders of the Association</text>
+</svg>

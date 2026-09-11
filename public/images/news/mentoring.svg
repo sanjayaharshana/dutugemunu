@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Mentoring Programme">
+  <defs>
+    <linearGradient id="t44" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#47101c"/><stop offset="1" stop-color="#6a1b2a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#t44)"/>
+  <circle cx='103' cy='395' r='127' fill='#fff' opacity='0.10'/>
+  <circle cx='549' cy='378' r='159' fill='#e7d4a8' opacity='0.10'/>
+  <circle cx='689' cy='294' r='145' fill='#fff' opacity='0.10'/>
+  <circle cx='542' cy='50' r='140' fill='#fff' opacity='0.10'/>
+  <path d='M260 0 L468 0 L300 500 L92 500 Z' fill='#fff' opacity='0.12'/>
+  <rect x="18" y="18" width="764" height="464" fill="none" stroke="#e7d4a8" stroke-width="1.5" opacity="0.55"/>
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central"
+        font-family="Georgia,'Times New Roman',serif" font-size="26" fill="rgba(255,255,255,0.85)" letter-spacing="1">Mentoring Programme</text>
+</svg>

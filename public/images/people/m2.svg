@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Sanath Susantha">
+  <defs>
+    <linearGradient id="g_m2.svg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#efe6d4"/>
+      <stop offset="1" stop-color="#f0e4d6"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#g_m2.svg)"/>
+  <circle cx="200" cy="200" r="118" fill="#fff" opacity="0.4"/>
+  <circle cx="200" cy="200" r="118" fill="none" stroke="#6a1b2a" stroke-width="1.5" opacity="0.25"/>
+  <text x="200" y="200" text-anchor="middle" dominant-baseline="central"
+        font-family="Georgia,'Times New Roman',serif" font-size="104" font-weight="700"
+        fill="#6a1b2a" opacity="0.82">SS</text>
+</svg>
