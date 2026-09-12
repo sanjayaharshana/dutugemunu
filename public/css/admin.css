@@ -21,7 +21,7 @@
 }
 
 * { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; overflow-x: clip; }
 body {
     margin: 0;
     font-family: var(--font);
@@ -30,6 +30,7 @@ body {
     color: var(--body);
     background: var(--bg);
     -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
 }
 a { color: var(--maroon); text-decoration: none; }
 a:hover { color: var(--maroon-bright); }
@@ -180,6 +181,7 @@ img { max-width: 100%; display: block; }
 .stat--sm b { font-size: 1.3rem; }
 
 /* --------------------------------------------------------------- table --- */
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .table { width: 100%; border-collapse: collapse; }
 .table th, .table td { text-align: left; padding: .7rem .8rem; border-bottom: 1px solid var(--line); vertical-align: middle; }
 .table th { font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
@@ -273,8 +275,10 @@ img { max-width: 100%; display: block; }
     .admin { grid-template-columns: 1fr; }
     .sidebar {
         position: static; height: auto; flex-direction: row; flex-wrap: wrap;
-        align-items: center; gap: .3rem;
+        align-items: center; gap: .3rem; min-width: 0; width: 100%;
     }
+    .sidebar a { flex: 0 1 auto; }
+    .sidebar__foot { flex-wrap: wrap; }
     .sidebar__brand { border: 0; padding: .3rem .6rem; margin: 0 .6rem 0 0; }
     .sidebar__foot { margin: 0 0 0 auto; border: 0; padding: 0; }
     .form-grid { grid-template-columns: 1fr; }

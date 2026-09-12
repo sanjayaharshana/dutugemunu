@@ -23,17 +23,19 @@
         @if ($recentNews->isEmpty())
             <p class="muted">No articles yet.</p>
         @else
-            <table class="table">
-                <tbody>
-                @foreach ($recentNews as $a)
-                    <tr>
-                        <td>{{ $a->published_at?->format('j M Y') ?? '—' }}</td>
-                        <td><a href="{{ route('admin.news.edit', $a) }}">{{ $a->title }}</a></td>
-                        <td>@if ($a->published_at && $a->published_at->isPast())<span class="pill">Live</span>@else<span class="pill pill--muted">Draft</span>@endif</td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
+            <div class="table-scroll">
+                <table class="table">
+                    <tbody>
+                    @foreach ($recentNews as $a)
+                        <tr>
+                            <td>{{ $a->published_at?->format('j M Y') ?? '—' }}</td>
+                            <td><a href="{{ route('admin.news.edit', $a) }}">{{ $a->title }}</a></td>
+                            <td>@if ($a->published_at && $a->published_at->isPast())<span class="pill">Live</span>@else<span class="pill pill--muted">Draft</span>@endif</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         @endif
     </div>
 @endsection

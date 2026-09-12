@@ -1,0 +1,101 @@
+<base href="http://127.0.0.1:8000/">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Dashboard · DCOSA Admin</title>
+    <link rel="icon" href="http://127.0.0.1:8000/images/favicon-96.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/css/admin.css">
+</head>
+<body>
+<div class="admin">
+    <aside class="sidebar">
+        <a href="http://127.0.0.1:8000/admin" class="sidebar__brand">
+            <img src="http://127.0.0.1:8000/images/logo-256.png" alt="">
+            <b>DCOSA<br>Admin</b>
+        </a>
+                    <a href="http://127.0.0.1:8000/admin" class="is-active">
+                Dashboard
+                            </a>
+                    <a href="http://127.0.0.1:8000/admin/committee" class="">
+                Committee
+                            </a>
+                    <a href="http://127.0.0.1:8000/admin/members" class="">
+                Members
+                            </a>
+                    <a href="http://127.0.0.1:8000/admin/funds" class="">
+                Funds
+                            </a>
+                    <a href="http://127.0.0.1:8000/admin/messages" class="">
+                Messages
+                            </a>
+                    <a href="http://127.0.0.1:8000/admin/news" class="">
+                News
+                            </a>
+                    <a href="http://127.0.0.1:8000/admin/events" class="">
+                Events
+                            </a>
+                    <a href="http://127.0.0.1:8000/admin/media" class="">
+                Gallery &amp; Hero
+                            </a>
+                    <a href="http://127.0.0.1:8000/admin/settings" class="">
+                Site Settings
+                            </a>
+                <div class="sidebar__foot stack-sm">
+            <div class="muted" style="padding:.4rem .75rem">Association Admin</div>
+            <a href="http://127.0.0.1:8000" target="_blank" rel="noopener">View website ↗</a>
+            <form method="POST" action="http://127.0.0.1:8000/admin/logout">
+                <input type="hidden" name="_token" value="4F4CljFw0DU2VQAWzUv0GVxPTLxHaFFwZaeioeUk" autocomplete="off">                <button type="submit" class="btn btn--link" style="color:rgba(255,255,255,.85)">Sign out</button>
+            </form>
+        </div>
+    </aside>
+
+    <main class="main">
+        <div class="topline">
+            <div>
+                <h1>Dashboard</h1>
+                <p>Manage the content that appears on the public website.</p>            </div>
+            <div></div>
+        </div>
+
+                
+            <div class="stat-grid mt">
+        <a class="stat" href="http://127.0.0.1:8000/admin/committee"><b>8</b><span>Office bearers</span></a>
+        <a class="stat" href="http://127.0.0.1:8000/admin/committee"><b>9</b><span>Committee members</span></a>
+        <a class="stat" href="http://127.0.0.1:8000/admin/news"><b>2</b><span>News articles</span></a>
+        <a class="stat" href="http://127.0.0.1:8000/admin/events"><b>7</b><span>Events</span></a>
+        <a class="stat" href="http://127.0.0.1:8000/admin/media"><b>8</b><span>Gallery images</span></a>
+        <a class="stat" href="http://127.0.0.1:8000/admin/media"><b>4</b><span>Hero images</span></a>
+        <a class="stat stat--sm" href="http://127.0.0.1:8000/admin/funds" title="Rs. 4,850,000"><b>Rs. 4.85M</b><span>Fund balance</span></a>
+        <a class="stat" href="http://127.0.0.1:8000/admin/messages"><b>0</b><span>Unread messages</span></a>
+    </div>
+
+    <div class="panel">
+        <div class="panel__head">
+            <h2>Latest news</h2>
+            <a href="http://127.0.0.1:8000/admin/news/create" class="btn btn--ghost btn--sm">+ New article</a>
+        </div>
+                    <table class="table">
+                <tbody>
+                                    <tr>
+                        <td>11 Sep 2026</td>
+                        <td><a href="http://127.0.0.1:8000/admin/news/9/edit">Executive Committee Reaches Out to Global Alumni Base</a></td>
+                        <td><span class="pill">Live</span></td>
+                    </tr>
+                                    <tr>
+                        <td>18 Aug 2026</td>
+                        <td><a href="http://127.0.0.1:8000/admin/news/5/edit">New Executive Committee for 2026</a></td>
+                        <td><span class="pill">Live</span></td>
+                    </tr>
+                                </tbody>
+            </table>
+            </div>
+    </main>
+</div>
+</body>
+</html>

@@ -13,28 +13,30 @@
             @if ($list->isEmpty())
                 <p class="muted">Nothing here.</p>
             @else
-                <table class="table">
-                    <thead><tr><th>Date</th><th>Event</th><th>Where</th><th></th></tr></thead>
-                    <tbody>
-                    @foreach ($list as $e)
-                        <tr>
-                            <td class="muted">{{ $e->date->format('j M Y') }}</td>
-                            <td><a href="{{ route('admin.events.edit', $e) }}"><strong>{{ $e->title }}</strong></a></td>
-                            <td class="muted">{{ $e->location }}{{ $e->time ? ' · ' . $e->time : '' }}</td>
-                            <td>
-                                <div class="row-actions">
-                                    <a href="{{ route('admin.events.edit', $e) }}" class="btn btn--ghost btn--sm">Edit</a>
-                                    <form method="POST" action="{{ route('admin.events.destroy', $e) }}" class="inline-form"
-                                          onsubmit="return confirm('Delete this event?')">
-                                        @csrf @method('DELETE')
-                                        <button class="btn btn--danger btn--sm">Delete</button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+                <div class="table-scroll">
+                    <table class="table">
+                        <thead><tr><th>Date</th><th>Event</th><th>Where</th><th></th></tr></thead>
+                        <tbody>
+                        @foreach ($list as $e)
+                            <tr>
+                                <td class="muted">{{ $e->date->format('j M Y') }}</td>
+                                <td><a href="{{ route('admin.events.edit', $e) }}"><strong>{{ $e->title }}</strong></a></td>
+                                <td class="muted">{{ $e->location }}{{ $e->time ? ' · ' . $e->time : '' }}</td>
+                                <td>
+                                    <div class="row-actions">
+                                        <a href="{{ route('admin.events.edit', $e) }}" class="btn btn--ghost btn--sm">Edit</a>
+                                        <form method="POST" action="{{ route('admin.events.destroy', $e) }}" class="inline-form"
+                                              onsubmit="return confirm('Delete this event?')">
+                                            @csrf @method('DELETE')
+                                            <button class="btn btn--danger btn--sm">Delete</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
             @endif
         </div>
     @endforeach
