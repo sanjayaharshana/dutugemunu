@@ -25,6 +25,7 @@
                     <li><a href="{{ route('committee') }}">The Committee</a></li>
                     <li><a href="{{ route('news') }}">News &amp; Events</a></li>
                     <li><a href="{{ route('contact') }}">Contact Us</a></li>
+                    <li><a href="{{ route('downloads') }}">Downloads</a></li>
                 </ul>
             </div>
 

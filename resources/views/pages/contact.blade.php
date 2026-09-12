@@ -21,41 +21,55 @@
                 <p class="eyebrow">Send a message</p>
                 <h2>Write to the Secretary</h2>
                 <p>Use the form below and we will reply by email, usually within a few days.</p>
-                <form class="form" data-demo data-email="{{ $c['email'] }}">
+
+                @if (session('status'))
+                    <div class="form__note" style="background:var(--maroon-soft);color:var(--maroon);border-radius:var(--radius);padding:.9rem 1.1rem;margin-bottom:1.6rem;font-weight:600">
+                        {{ session('status') }}
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="form__note" style="background:var(--maroon-soft);color:var(--maroon);border-radius:var(--radius);padding:1rem 1.2rem;margin-bottom:1.5rem;font-weight:600">
+                        Please check the details below:
+                        <ul style="margin:.5rem 0 0;font-weight:400">
+                            @foreach ($errors->all() as $e)
+                                <li>{{ $e }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form class="form" method="POST" action="{{ route('contact.store') }}">
+                    @csrf
                     <div class="form__row">
                         <div class="field">
                             <label for="c-name">Your name</label>
-                            <input type="text" id="c-name" name="name" required>
+                            <input type="text" id="c-name" name="name" value="{{ old('name') }}" required>
                         </div>
                         <div class="field">
                             <label for="c-year">Year you left <span style="font-weight:400;color:var(--muted)">(if an old student)</span></label>
-                            <input type="text" id="c-year" name="year" placeholder="e.g. 1998">
+                            <input type="text" id="c-year" name="year" value="{{ old('year') }}" placeholder="e.g. 1998">
                         </div>
                     </div>
                     <div class="form__row">
                         <div class="field">
                             <label for="c-email">Email</label>
-                            <input type="email" id="c-email" name="email" required>
+                            <input type="email" id="c-email" name="email" value="{{ old('email') }}" required>
                         </div>
                         <div class="field">
                             <label for="c-topic">Topic</label>
                             <select id="c-topic" name="topic">
-                                <option>Membership</option>
-                                <option>Events &amp; reunions</option>
-                                <option>Branches</option>
-                                <option>Projects &amp; donations</option>
-                                <option>Newsletter &amp; media</option>
-                                <option>Something else</option>
+                                @foreach (['Membership', 'Events & reunions', 'Branches', 'Projects & donations', 'Newsletter & media', 'Something else'] as $opt)
+                                    <option @selected(old('topic') === $opt)>{{ $opt }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="field">
                         <label for="c-message">Message</label>
-                        <textarea id="c-message" name="message" required></textarea>
+                        <textarea id="c-message" name="message" required>{{ old('message') }}</textarea>
                     </div>
                     <button type="submit" class="btn btn--primary" style="width:100%;justify-content:center">Send message</button>
-                    <p class="form__note">This form is a demonstration and does not yet submit. Please email
-                        <a href="mailto:{{ $c['email'] }}">{{ $c['email'] }}</a> directly for now.</p>
                 </form>
             </div>
 

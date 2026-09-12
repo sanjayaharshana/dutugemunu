@@ -54,6 +54,46 @@ class PageController extends Controller
         return view('pages.contact');
     }
 
+    public function downloads()
+    {
+        $downloads = collect(config('association.downloads', []))
+            ->map(function (array $d) {
+                $path = public_path($d['file']);
+
+                $d['exists']     = is_file($path);
+                $d['url']        = $this->publicFileUrl($d['file']);
+                $d['size_label'] = $d['exists'] ? $this->humanFileSize(filesize($path)) : null;
+
+                return $d;
+            });
+
+        return view('pages.downloads', ['downloads' => $downloads]);
+    }
+
+    /**
+     * asset() doesn't encode spaces/special characters in the path itself,
+     * so file names like "Dutugemunu Old St.pdf" need each segment encoded.
+     */
+    private function publicFileUrl(string $relativePath): string
+    {
+        $encoded = implode('/', array_map('rawurlencode', explode('/', $relativePath)));
+
+        return asset($encoded);
+    }
+
+    private function humanFileSize(int $bytes): string
+    {
+        if ($bytes >= 1048576) {
+            return round($bytes / 1048576, 1) . ' MB';
+        }
+
+        if ($bytes >= 1024) {
+            return round($bytes / 1024) . ' KB';
+        }
+
+        return $bytes . ' B';
+    }
+
     /**
      * News items, newest first, each with a Carbon date attached.
      */

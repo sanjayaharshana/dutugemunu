@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\CommitteeMember;
+use App\Models\ContactMessage;
 use App\Models\Event;
 use App\Models\FundTransaction;
 use App\Models\MediaItem;
@@ -23,8 +24,10 @@ class DashboardController extends Controller
                 'gallery'        => MediaItem::where('collection', 'gallery')->count(),
                 'hero'           => MediaItem::where('collection', 'hero')->count(),
             ],
-            'fundBalance' => Money::format(FundTransaction::totalBalance()),
-            'recentNews'  => NewsArticle::newest()->take(5)->get(),
+            'fundBalance'      => Money::abbreviate(FundTransaction::totalBalance()),
+            'fundBalanceExact' => Money::format(FundTransaction::totalBalance()),
+            'unreadMessages'   => ContactMessage::whereNull('read_at')->count(),
+            'recentNews'      => NewsArticle::newest()->take(5)->get(),
         ]);
     }
 }

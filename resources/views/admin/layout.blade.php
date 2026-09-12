@@ -12,15 +12,17 @@
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 </head>
 <body>
+@php($unreadMessages = \App\Models\ContactMessage::whereNull('read_at')->count())
 @php($nav = [
-    ['admin.dashboard', 'Dashboard', ['admin.dashboard']],
-    ['admin.committee.index', 'Committee', ['admin.committee.*']],
-    ['admin.members.index', 'Members', ['admin.members.*']],
-    ['admin.funds.index', 'Funds', ['admin.funds.*']],
-    ['admin.news.index', 'News', ['admin.news.*']],
-    ['admin.events.index', 'Events', ['admin.events.*']],
-    ['admin.media.index', 'Gallery & Hero', ['admin.media.*']],
-    ['admin.settings.edit', 'Site Settings', ['admin.settings.*']],
+    ['admin.dashboard', 'Dashboard', ['admin.dashboard'], 0],
+    ['admin.committee.index', 'Committee', ['admin.committee.*'], 0],
+    ['admin.members.index', 'Members', ['admin.members.*'], 0],
+    ['admin.funds.index', 'Funds', ['admin.funds.*'], 0],
+    ['admin.messages.index', 'Messages', ['admin.messages.*'], $unreadMessages],
+    ['admin.news.index', 'News', ['admin.news.*'], 0],
+    ['admin.events.index', 'Events', ['admin.events.*'], 0],
+    ['admin.media.index', 'Gallery & Hero', ['admin.media.*'], 0],
+    ['admin.settings.edit', 'Site Settings', ['admin.settings.*'], 0],
 ])
 <div class="admin">
     <aside class="sidebar">
@@ -28,8 +30,11 @@
             <img src="{{ asset('images/logo-256.png') }}" alt="">
             <b>DCOSA<br>Admin</b>
         </a>
-        @foreach ($nav as [$route, $label, $patterns])
-            <a href="{{ route($route) }}" @class(['is-active' => request()->routeIs($patterns)])>{{ $label }}</a>
+        @foreach ($nav as [$route, $label, $patterns, $badge])
+            <a href="{{ route($route) }}" @class(['is-active' => request()->routeIs($patterns)])>
+                {{ $label }}
+                @if ($badge > 0)<span class="sidebar__badge">{{ $badge }}</span>@endif
+            </a>
         @endforeach
         <div class="sidebar__foot stack-sm">
             <div class="muted" style="padding:.4rem .75rem">{{ auth()->user()?->name }}</div>

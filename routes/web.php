@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin;
+use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\Member;
 use App\Http\Controllers\MemberJoinController;
 use App\Http\Controllers\PageController;
@@ -17,6 +18,8 @@ Route::get('/committee', [PageController::class, 'committee'])->name('committee'
 Route::get('/news', [PageController::class, 'news'])->name('news');
 Route::get('/news/{slug}', [PageController::class, 'newsShow'])->name('news.show');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::post('/contact', [ContactMessageController::class, 'store'])->name('contact.store');
+Route::get('/downloads', [PageController::class, 'downloads'])->name('downloads');
 
 Route::get('/join', [MemberJoinController::class, 'create'])->name('join');
 Route::post('/join', [MemberJoinController::class, 'store'])->name('join.store');
@@ -65,6 +68,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('members', [Admin\MemberController::class, 'index'])->name('members.index');
         Route::get('members/{member}', [Admin\MemberController::class, 'show'])->name('members.show');
         Route::delete('members/{member}', [Admin\MemberController::class, 'destroy'])->name('members.destroy');
+
+        Route::get('messages', [Admin\ContactMessageController::class, 'index'])->name('messages.index');
+        Route::get('messages/{message}', [Admin\ContactMessageController::class, 'show'])->name('messages.show');
+        Route::delete('messages/{message}', [Admin\ContactMessageController::class, 'destroy'])->name('messages.destroy');
 
         Route::get('settings', [Admin\SettingsController::class, 'edit'])->name('settings.edit');
         Route::put('settings', [Admin\SettingsController::class, 'update'])->name('settings.update');

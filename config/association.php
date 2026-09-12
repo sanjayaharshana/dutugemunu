@@ -69,6 +69,20 @@ return [
         'branch'         => 'Buttala',
     ],
 
+    // Shown on the public "Downloads" page. Each 'file' is relative to /public.
+    'downloads' => [
+        [
+            'title'       => 'Association Constitution',
+            'description' => "The original constitution of the Dutugemunu College Old Students' Association (ව්‍යවස්ථාව), as adopted by the general membership.",
+            'file'        => 'docs/les.pdf',
+        ],
+        [
+            'title'       => 'Membership Application Form',
+            'description' => 'The official paper application form for new membership. Print it, fill it in and hand it to the Secretary — or use the online form instead.',
+            'file'        => 'docs/Dutugemunu Old St.pdf',
+        ],
+    ],
+
     'president_message' => [
         'name'   => 'Chandana Dissanayake',
         'title'  => 'Vice Chairman of the Association',
