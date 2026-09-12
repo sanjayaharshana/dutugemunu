@@ -1564,6 +1564,12 @@ body.nav-open .nav-toggle span::after  { transform: translateY(-6px) rotate(-45d
 
     .topbar { display: none; }
 
+    /* backdrop-filter on .site-header creates a containing block for its
+       position:fixed descendants, which traps the .nav drawer's `inset`
+       inside the header's own (short) box instead of the viewport. Drop it
+       here so the drawer can size itself to the full screen when open. */
+    .site-header { backdrop-filter: none; }
+
     .nav-toggle { display: block; }
     .nav {
         position: fixed;
